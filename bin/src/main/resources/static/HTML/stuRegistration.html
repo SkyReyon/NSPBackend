@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Student Registration</title>
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/index-navigation.css">
+<link rel="stylesheet" href="/css/index-styles.css">
+<link rel="stylesheet" href="/css/Registration.css">
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+	$(function(){
+		$("#form1").submit(function(evt){
+			evt.preventDefault();
+			var obj={
+					name: $("#first_name").val(),
+					dob: $("#dob").val(),
+					gender: $("#gender").val(),
+					mobileNo : $("#mobileNo").val(),
+					instiCode : $('#insti_code').val(),
+					state : $('#domicile_state').val(),
+					district : $('#district').val(),
+					email : $('#email_ID').val(),
+					bankName : $('#bank_name').val(),
+					bankIFSC : $('#bank_IFSC').val(),
+					accountNo : $('#accountNo').val(),
+					password : $('#st_pass').val(),
+					aadharNo : $('#aadharNo').val(),
+					
+			}
+			var url="/register";
+			if($("#mobileNo").val().length != 10){
+				alert("Mobile number has to be 10 characters")
+				$("#mobileNo").focus();
+			}
+			else if($("#st_pass").val() != $("#retype").val()){
+				alert("Mismatch of password fields");
+				$("#st_pass").focus();
+			}
+			else if($("#aadharNo").val().length != 12){
+				alert("Check aadhar number");
+				$("#aadharNo").focus();
+			}
+			else if(!jQuery("#confirmation").prop("checked")){
+				alert("Check the confirmation");		
+			}
+			$.ajax({
+				url : '/register', //url we want to hit
+				method : 'POST', //GET or POST or any other method of HTTP
+				data :JSON.stringify(obj),//type of data we are sending
+				contentType:'application/json',
+				
+				success: function(response){
+					sessionStorage.setItem('data',response);
+					window.location.href = "http://localhost:8085/HTML/successful.html";
+					alert(JSON.stringify(response));	
+				}
+				
+			})
+			
+		})
+	})
+	</script>
+<style>
+	html, body {
+	width:100%;
+	height:100%;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+   
+   	
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#head{
+
+background-color:black;
+height:15%;
+margin:0;
+font-size:40px;
+font-style:italic;
+color:#70DBDB;
+font-weight:bold;
+padding-top:1%;
+display:"inline-block";
+
+
+
+  padding: 20px;
+  text-align: right;
+  
+}
+
+#p1{
+float:left;}
+.menu{
+height:5%;
+background-color:#C0C0C0;
+ padding: 10px 10px 10px 10px;
+  text-decoration: none;
+ 
+ }
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+  
+.menu a:hover {
+  background-color: #BBFFFF;
+  color: black;
+}
+.m1{
+margin-left:80%;
+}
+#down{
+ font-size:23px;
+}
+</style>	
+</style>
+</head>
+<body>
+<div class="card" style="background-color:#ffe0cc">
+	<div>
+		<div class="card-body" style="background-color: #ffb380">
+			<h2 class="text-center card-title" style="font-family:cursive ;"><b>Scholar</b> <img src="/images/giphy.gif" style="height:5%;width:9%"></h2>
+			<h6 class="text-center text-muted card-subtitle mb-2">Government
+				of India</h6>
+		</div>
+	</div>
+	</div>
+	<div id="form">
+		<form id="form1">
+			<table width="100%">
+				<tr>
+				</tr>
+				<tr>
+					<td width="100%" height="100%" align="center"><table
+							width="80%" border="1" cellpadding="5" cellspacing="0"
+							bordercolor="#ff6600">
+							<tr bgcolor="#ff6600">
+								<td colspan="4" align="center" class="stylemedium">Student
+									Registration Form</td>
+							</tr>
+							<tr class="stylesmall">
+								<td>&nbsp &nbsp &nbsp &nbsp Name<br/>(as in marksheet)
+								</td>
+								<td><input name="first_name" type="text" id="first_name"
+									maxlength="50" placeholder="Enter your full name"required></td>
+								<td>Date Of Birth</td>
+								<td><input name="dob" type="date" id="dob" size="10"
+									maxlength="10" required> DD-MM-YYYY</td>
+							</tr>
+							<tr class="stylesmall">
+								<td>Gender</td>
+								<td>
+								<select id="gender"><option value="">-----select-----</option>
+								<option>Male</option>
+								<option>Female</option>
+								</select>
+								
+								<td>Contact No</td>
+								<td><input name="contact_no" type="text" id="mobileNo"
+									maxlength="20"placeholder="Enter your contact number" required></td>
+							</tr>
+							<tr class="stylesmall">
+								<td>Institute Code</td>
+								<td><input name="insti_code" type="text" id="insti_code"
+								 placeholder="Enter your institution code"></td>
+								<td>Aadhar Number</td>
+								<td><input name="aadhar_no" type="text" id="aadharNo"
+									maxlength="12" placeholder="Enter your aadhar number" required></td>
+							</tr>
+							<tr class="stylesmall">
+								<td>State of Domicile</td>
+								<td><select name="domicile_state" id="domicile_state">
+										<option value="">-----select-----</option>
+										<option value="Mumbai">Mumbai</option>
+										<option value="Jabalpur">Jabalpur</option>
+										<option value="Jaipur">Jaipur</option>
+								</select></td>
+
+								<td>District</td>
+								<td><select name="district" id="district">
+										<option value="">-----select-----</option>
+										<option value="Mumbai">Mumbai</option>
+										<option value="Jabalpur">Jabalpur</option>
+										<option value="Jaipur">Jaipur</option>
+								</select></td>
+
+							</tr>
+							<tr class="stylesmall">
+								<td>Email ID</td>
+								<td><input id="email_ID" maxlength="100"placeholder="Enter your Email Id"></td>
+								<td>Bank Name</td>
+								<td><input id="bank_name"
+									maxlength="100" placeholder="Enter the bank name" required></td>
+							</tr>
+							<tr class="stylesmall">
+								<td>Bank IFSC Code</td>
+								<td><input id="bank_IFSC"
+									maxlength="100" placeholder="Enter the IFSC code"></td>
+								<td>Bank Account Number</td>
+								<td><input id="accountNo"
+									maxlength="100" placeholder="Enter your account number" required></td>
+							</tr>
+							<tr class="stylesmall">
+								<td>Password</td>
+								<td><input type="password" id="st_pass"
+									maxlength="20" placeholder="Enter the password" required></td>
+								<td>Retype Password</td>
+								<td><input type="password" id="retype"
+									maxlength="20" placeholder="Retype password" required></td>
+							</tr>
+							<tr>
+								<td colspan="4"><input type="checkbox" id="confirmation"
+									value="Confirm" >All the above information furnished by
+									me is true to the best of my knowledge.</td>
+							</tr>
+
+							<tr>
+								<td colspan="4">
+								<button type="submit" style="background-color: #ff6600;border-radius: 25px; height:40px;width:150px"><b>Submit</b></button>
+							</tr>
+
+						</table>
+						
+						</form>
+
+						</div>
+</body>
+</html>

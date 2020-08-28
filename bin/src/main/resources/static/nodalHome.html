@@ -1,0 +1,180 @@
+<html>
+<head>
+ <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nodal Home Page</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    
+    <script src="/js/stuHome-jquery.min.js"></script>
+    <script src="/bootstrap/js/stuHome-bootstrap.min.js"></script>
+<style>
+
+
+h1 {
+  text-align: center;
+  font-family: Tahoma, Arial, sans-serif;
+  color: #06D85F;
+  margin: 80px 0;
+}
+.block{
+margin-left:5%;
+}
+.box,.box1,.box2 {
+ margin-left:5%;
+ font-color:black;
+
+}
+
+.button {
+  font-size: 1em;
+  padding: 10px;
+  color: black;
+  border: 2px solid #06D85F;
+  border-radius: 20px/50px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+.button:hover {
+  background: #06D85F;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup,.popup1,.popup2 {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup h2 ,.popup1 h2,.popup2 h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close,.popup1 .close,.popup2 .close{
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: #06D85F;
+}
+.popup .content  {
+  max-height: 30%;
+  overflow: auto;
+}
+.popup1 .close:hover {
+  color: #06D85F;
+}
+.popup1 .content  {
+  max-height: 30%;
+  overflow: auto;
+}
+.popup2 .close:hover {
+  color: #06D85F;
+}
+.popup2 .content  {
+  max-height: 30%;
+  overflow: auto;
+}
+
+@media screen and (max-width: 700px){
+ 
+  .popup,.popup2,.popup3{
+    width: 70%;
+  }
+}
+</style>
+</head>
+<body>
+<div class="card">
+        <div class="card-body" width="20%">
+            <h2 class="text-center card-title">Scholar Boat</h2>
+            <h6 class="text-center text-muted card-subtitle mb-2">Government of India</h6>
+        </div>
+    </div>
+     <div>
+        <nav class="navbar navbar-light navbar-expand-md navigation-clean">
+            <span>State Nodal Home Page </span>
+            <a href="" style="margin-left:50%">Logout</a>
+  </nav>
+  </div>
+<div class="card">
+</div><br/>
+<br/>
+<div class="block">
+<div class="box">
+<span> View List Of Registered Institutes</span>
+	<a  style="margin-left:8%" class="button" href="#popup1">Pop up 1</a>
+	
+</div><br/><br/><br/>
+<div id="popup1" class="overlay">
+	<div class="popup">
+		<h2>Here1</h2>
+		<a class="close" href="#">&times;</a>
+		<div class="content">
+			First!! Thank to pop me out of that button, but now i'm done so you can close this window.
+		</div>
+	</div>
+</div>
+<div class="box1">
+<span> View Student Application Form</span>&nbsp
+	<a style="margin-left:8%" class="button" href="#popup2"> Pop up 2</a>
+</div>
+</div><br/><br/><br/>
+<div id="popup2" class="overlay">
+	<div class="popup">
+		<h2>Here 2</h2>
+		<a class="close" href="#">&times;</a>
+		<div class="content">
+			Second!! Thank to pop me out of that button, but now i'm done so you can close this window.
+		</div>
+	</div>
+</div>
+
+<div class="box2">
+<span style="margin-left:5%">Verify Institue Request</span>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+	<a style="margin-left:8%" class="button" href="#popup3"> Pop up 3</a>
+</div>
+</div>
+<div id="popup3" class="overlay">
+	<div class="popup">
+		<h2>Here3</h2>
+		<a class="close" href="#">&times;</a>
+		<div class="content">
+			Third !!!!!! Thank to pop me out of that button, but now i'm done so you can close this window.
+		</div>
+	</div>
+</div>
+</div>
+
+
+
+</body>
+</html>

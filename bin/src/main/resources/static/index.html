@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>index</title>
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/index-navigation.css">
+<link rel="stylesheet" href="/css/index-styles.css">
+<script src="/js/jquery.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script>
+$(function(){
+	$("#form").submit(function(evt){
+		evt.preventDefault();
+		var obj={
+				uid: $("#uid").val(),
+				password: $("#password").val(),
+		}
+	$.ajax({
+			url : '/studentlogin', //url we want to hit
+			method : 'POST', //GET or POST or any other method of HTTP
+			data :JSON.stringify(obj),//type of data we are sending
+			contentType:'application/json',
+			
+			success: function(response){
+				if(!response){
+					alert("Invalid username/password");
+				}
+				else{
+					sessionStorage.setItem("reg_id", response);	
+					window.location.href = "http://localhost:8085/HTML/stuHome.html";
+				}
+			}
+			
+		})
+		
+	})
+})
+</script>
+</head>
+<body style="background-color: #ffb380">
+<div class="card" style="background-color:#ffe0cc">
+	<div>
+		<div class="card-body" style="background-color: #ffb380">
+			<h2 class="text-center card-title" style="font-family:cursive ;"><b>Scholar</b> <img src="/images/giphy.gif" style="height:5%;width:9%"></h2>
+			<h6 class="text-center text-muted card-subtitle mb-2">Government
+				of India</h6>
+		</div>
+	</div>
+	</div>
+	<div>
+		<nav class="navbar navbar-light navbar-expand-md navigation-clean" style="background-color:#ff6600">
+			<div class="container" >
+				<a class="navbar-brand" href="#"></a>
+				<button class="navbar-toggler" data-toggle="collapse"
+					data-target="#navcol-1">
+					<span class="sr-only">Toggle navigation</span><span
+						class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navcol-1">
+					<ul class="nav navbar-nav ml-auto">
+						<li class="nav-item" role="presentation"><a
+							class="nav-link active" href="#">Home</a></li>
+						
+						<li class="nav-item" role="presentation"><a class="nav-link"
+							href="#" onclick= "window.location.href = 'http://localhost:8085/HTML/about.html';">About us</a></li>
+						
+						<li class="nav-item" role="presentation"><a class="nav-link"
+							href="#"onclick= "window.location.href = 'http://localhost:8085/HTML/contact.html';">Contact Us</a></li>
+						
+						<li class="dropdown"><a
+							class="dropdown-toggle nav-link dropdown-toggle"
+							data-toggle="dropdown" aria-expanded="false" href="#">New
+								Registration</a>
+							<div class="dropdown-menu" role="menu">
+								<a class="dropdown-item" role="presentation" href="#" onclick="window.location.href = 'http://localhost:8085/HTML/stuRegistration.html';">Student
+									Registration</a>
+								<a class="dropdown-item" role="presentation"
+									href="#" onclick= "window.location.href = 'http://localhost:8085/HTML/InstRegistration.html';">Institute Registration</a>
+							</div></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<div class="card" style="background-color: #ffb380">
+		<div class="card-group">
+			<div class="card" style="max-width: none;">
+				<div class="card">
+					<div class="card-body">
+						<h4 class="card-title">Latest Updates</h4>
+						<div class="card">
+							<div class="card-body" style="max-width: auto;">
+								<p class="card-text">The Institutes which are registered on NSP 2.0 are required to submit Institute Registration Form for AY 2019-20. The Form is available in Institute Login.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card">
+					<div class="card-body" style="max-width: none;">
+						<h4 class="card-title">Helpdesk</h4>
+						<p class="card-text">In case of Post Matric/Merit cum Means based scholarship schemes: Self Declaration/Self Certification or Self Attested Community Certificate - (Mandatory). In case of Pre-Matric scholarship scheme: Self Declaration of Community Certificate for Class I to X given by the Parent/Legal Guardian- (Mandatory).</p>
+					</div>
+				</div>
+			</div>
+			<div class="card d-inline-block" style="max-width: none;">
+				<div class="card-body">
+					<h4 class="card-title">Description about Portal</h4>
+					<p class="card-text">Scholar Boat Portal is one-stop solution through which various services starting from student application, application receipt, processing, sanction and disbursal	of various scholarships to Students are enabled. 
+This initiative aims at providing a Simplified, Mission-oriented,	Accountable, Responsive & Transparent 'SMART' System for faster & effective disposal of Scholarships applications and delivery of funds directly into beneficiaries account without any leakages.
+It ensure timely disbursement of Scholarships to students Provide a common portal for various Scholarships schemes of Central and State Governments Create a transparent database of scholars Avoid duplication in processing Harmonisation of different Scholarships schemes & norms Application of Direct Benefit Transfer.</p>
+				</div>
+			</div>
+			<div class="card" style="max-width: none; max-height: none;">
+				<form id="form"><div class="card-body">
+					<h4 class="card-title">Student Login</h4>
+					<label>UID :&nbsp;</label><br/>
+					<input type="text" id="uid" required><br/>
+					<label>Password :&nbsp;</label><br/>
+					<input type="password" id ="password" required>
+					<br/><a class="card-link" href="#"  style="color:#ff6600" > Forget Password ?</a><br/>
+					<div style="list-style:none;">Login As:
+					<li><a class="card-link" href="#" onclick= "window.location.href = 'http://localhost:8085/HTML/InstLogin.html';" style="color:#ff6600" >Institute</a><br></li>
+					<li><a class="card-link" href="#" onclick= "window.location.href = 'http://localhost:8085/HTML/adminLogin.html';"  style="color:#ff6600">State Nodal Officer</a><br></li>
+					<br>
+					</ul>
+					<button class="btn btn-primary" type="submit" style="background-color:#ff6600">Login</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+</body>
+</html>

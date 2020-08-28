@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bootstrap/css/stuHome-bootstrap.min.css">
+    <link rel="stylesheet" href="/css/stuHome-Navigation-Clean.css">
+    <link rel="stylesheet" href="/css/stuHome-styles.css">
+    
+    <script src="/js/stuHome-jquery.min.js"></script>
+    <script src="/bootstrap/js/stuHome-bootstrap.min.js"></script>
+  <script>
+   $(document).ready(function() {
+	   if(!sessionStorage.getItem("reg_id")){
+			alert("You need to login first!");
+			window.location.href = 'http://localhost:8085'
+		}
+   });
+   $("#logOut").click(function(){
+		sessionStorage.clear();
+		window.location.href = 'http://localhost:8085/index.html';
+		});
+   $(".logOut").click(function(){
+		
+		var obj={
+			instituteId : 'R1112'	
+	
+		}
+	
+	$.ajax({
+		url : '/instituteLogin', //url we want to hit
+		method : 'POST', //GET or POST or any other method of HTTP
+		data :JSON.stringify(obj),//type of data we are sending
+		contentType:'application/json',
+		
+		success: function(response){
+			//sessionStorage.setItem('data',response);
+			alert(JSON.stringify(response));	
+		}
+		
+		}) 
+   });
+</script>
+  
+  
+  
+</head>
+<style>
+h1 {
+  text-align: center;
+  font-family: Tahoma, Arial, sans-serif;
+  color: #06D85F;
+  margin: 80px 0;
+}
+.block{
+margin-left:5%;
+}
+.box,.box1,.box2 {
+ margin-left:5%;
+ font-color:black;
+
+}
+
+.button {
+  font-size: 1em;
+  padding: 10px;
+  color: black;
+  border: 2px solid #ff6600;
+  border-radius: 20px/50px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+.button:hover {
+  background: #ff6600;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup,.popup1,.popup2 {
+  margin: 70px auto;
+  padding: 20px;
+  background:white;
+  border-radius: 5px;
+  width: 70%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup h2,.popup1 h2,.popup2 h2 {
+  margin-top: 0;
+  color: #ff6600;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close,.popup1 .close,.popup2 .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #ff6600;
+}
+.popup .close:hover {
+  color: #ff6600;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+.popup1 .close:hover {
+  color:#ff6600;
+}
+.popup1 .content  {
+  max-height: 30%;
+  overflow: auto;
+}
+.popup2 .close:hover {
+  color: #ff6600;
+}
+.popup2 .content  {
+  max-height: 30%;
+  overflow: auto;
+}
+
+
+</style>
+<body style="background-color: #ffb380">
+   
+    <div class="card" style="background-color:#ffe0cc">
+	<div>
+		<div class="card-body" style="background-color: #ffb380">
+			<h2 class="text-center card-title" style="font-family:cursive ;"><b>Scholar</b> <img src="/images/giphy.gif" style="height:5%;width:9%"></h2>
+			<h6 class="text-center text-muted card-subtitle mb-2">Government
+				of India</h6>
+		</div>
+	</div>
+	</div>
+  
+    <div>
+        <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="background-color:#ff6600">
+            <div class="container"><a class="navbar-brand" href="#"></a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse"
+                    id="navcol-1">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item" role="presentation"><a class="nav-link active" href="">Home</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#" onclick="window.location.href = 'http://localhost:8085/HTML/about.html';">About us</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#" onclick="window.location.href = 'http://localhost:8085/HTML/contact.html';">Contact Us</a></li>
+                     <!--     <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">New Registration</a>
+                            <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">Student Registration</a><a class="dropdown-item" role="presentation" href="#">Institute Registration</a></div>
+                        </li>-->
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="card">
+        <div class="card-group">
+            <div class="card" style="max-width: 26%">
+            
+                        <h4 class="card-title" id="studentName">My Profile</h4>
+                        <br/>
+
+                        <p> Check Status</p>
+                        <p> Update</p>
+                        
+                        <p id="logOut"> Log Out</p>
+
+                     
+            </div>
+            <div class="card d-inline-block">
+                <div class="card-body" >
+                    <h4 class="card-title">Schemes</h4>
+                    <div class="card-text">
+                    <div class="box">
+                    <span>POST MATRIC SCHOLARSHIP</span>
+	               	<a style="margin-left:8%" class="button" href="#popup">
+	              	 VIEW</a>
+                  	 </div><br/>
+    
+    				<div class="box1">
+                    <span>PRAGATI SCHOLARSHIP</span>&nbsp  &nbsp &nbsp  &nbsp&nbsp;
+	               	<a style="margin-left:8%; text-decoration:none;" class="button" href="#popup1">
+	                VIEW</a>
+                   	</div><br/>
+                    <div class="box">
+                    <span>MERIT BASED SCHOLARSHIP</span>
+	              	 <a style="margin-left:8%" class="button" href="#popup2">
+	               	 VIEW</a>
+                   </div><br/>
+                  </div>
+                </div>
+            </div>
+            <div class="card" style="max-width: 30%">
+                <div class="card-body">
+                    <h2>Guidelines</h2>
+                    <p> Once you get to the Finalist round, high academic standards and requirements must be met. To become a finalist in the 2017 National Merit Scholarship Program, students had to:
+            Meet the three requirements above (under “What is the National Merit Scholarship Program?”)
+            Get a recommendation from your high school principal or someone designated by the principal
+            Have a record of high academic performance throughout high school
+            Submit a completed scholarship application
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+                   <!-- popUp -->
+<div id="popup" class="overlay">
+	<div class="popup">
+		<a class="close" href="#">&times;</a>
+		<div class="content">
+		    <p>
+		    <b>OBJECTIVES:</b><br/>
+		    The Maharashtra DTE Scholarship gives the opportunity to the students belonging to the backwards categories to study in the government and private colleges after completion of their Class 12th. This scheme not only provides the scholarship to study in technical courses but also gives the chance to apply for undergraduate and postgraduate courses in India.
+			Eligibility Criteria <br><br>
+			Those applicants who are belonging to the economically backward caste/category such as SC/ ST/ OBC or other minorities’ categories are required to check if they come under the eligibility criteria provided by the Directorate of Technical education, Maharashtra Government.<br><br/><br/>
+		    
+			<b>CONDITIONS:</b><br/>
+			•	The candidates applying for the Maharashtra Merit cum Means Scholarship 2017-2018 must have completed 10th and 12th from a recognized board with a minimum of 60% marks in aggregate.<br>
+			•	Maximum two members of a family belonging to the minority category can apply for the scholarship.<br/>
+			•	Students applying for the Maharashtra Merit cum Means Scholarship 2017-2018 must have Aadhaar Card enrolled in the State.<br/>
+			•	The applicant must produce all the documents prescribed by the state.<br/>
+			</p>
+		</div>
+		<button id="apply" onclick="window.location.href = 'http://localhost:8085/HTML/ScholarshipScheme.html';" style="background-color:#ff6600;color:white">APPLY</button>
+	</div>
+</div>
+
+<div id="popup1" class="overlay">
+	<div class="popup1">
+		<a class="close" href="#">&times;</a>
+		<div class="content">
+            <p>
+			<b>CONDITIONS:</b><br/>
+			•	‘One Girl’ per family and it can be extended for Two Girl Child per family where the family income is less than Rs. 8 Lakh /annum (In case of married girl child, the income of parents/ in laws whichever is higher is to be considered).<br>
+			•	The selection of candidate will be made on merit on the basis of qualifying examination to peruse the respective Technical Degree/Diploma course from any of the AICTE approved institution. Amount of scholarship: Tuition Fee of Rs. 30,000/- <br/>
+			
+		</div>
+		<button id="apply" onclick="window.location.href = 'http://localhost:8085/HTML/ScholarshipScheme.html';" style="background-color:#ff6600;color:white">APPLY</button>
+	</div>
+</div>
+<div id="popup2" class="overlay">
+	<div class="popup2">
+		<a class="close" href="#">&times;</a>
+		<div class="content">
+            <p>
+			<b>CONDITIONS:</b><br/>
+			•	Candidates must be an Indian national.<br/>
+			•	A minimum of 60% marks Class IX is required. SC, ST and PH candidates will need 55% marks in Class IX.<br/>
+			•	Candidate must be studying in a recognized school in their respective State .<br/>
+			
+		</div>
+		<button id="apply" onclick="window.location.href = 'http://localhost:8085/HTML/ScholarshipScheme.html';" style="background-color:#ff6600;color:white">APPLY</button>
+	</div>
+</div>
+</body>
+
+</html>

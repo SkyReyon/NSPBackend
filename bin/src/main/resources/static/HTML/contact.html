@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Contact Page</title>
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/index-navigation.css">
+<link rel="stylesheet" href="/css/index-styles.css">
+<script src="/js/jquery.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html, body {
+	width:100%;
+	height:100%;
+}
+body {
+    margin: 0;
+    padding: 0;
+    }
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+#head{
+
+background-color:black;
+height:15%;
+margin:0;
+font-size:40px;
+font-style:italic;
+color:#70DBDB;
+font-weight:bold;
+padding-top:1%;
+display:"inline-block";
+
+
+
+  padding: 20px;
+  text-align: right;
+  
+}
+
+#p1{
+float:left;
+}
+.not-active {
+  pointer-events: none;
+  cursor: default;
+  text-decoration: none;
+  color: black;
+}
+</style>
+</head>
+<body style="background-color: #ffb380">
+<div class="card" style="background-color:#ffe0cc">
+	<div>
+		<div class="card-body" style="background-color: #ffb380">
+			<h2 class="text-center card-title" style="font-family:cursive ;"><b>Scholar</b> <img src="/images/giphy.gif" style="height:5%;width:9%"></h2>
+			<h6 class="text-center text-muted card-subtitle mb-2">Government
+				of India</h6>
+		</div>
+	</div>
+	</div>
+	<div>
+		<nav class="navbar navbar-light navbar-expand-md navigation-clean" style="background-color:#ff6600">
+			<!--  <div class="container">-->
+				<a class="navbar-brand" href="#"></a>
+				<button class="navbar-toggler" data-toggle="collapse"
+					data-target="#navcol-1">
+					<span class="sr-only">Toggle navigation</span><span
+						class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navcol-1">
+					<ul class="nav navbar-nav ml-auto">
+						<li class="nav-item" role="presentation"><a  class="nav-link"
+							 href="#"  onclick= "window.location.href = 'http://localhost:8085/index.html';">Home</a></li>
+						
+						<li class="nav-item" role="presentation"><a class="nav-link"
+							href="#" onclick= "window.location.href = 'http://localhost:8085/HTML/about.html';">About us</a></li>
+						<li class="npn-active" role="presentation"><a class="nav-link">Contact us</a></li>
+						
+							
+						
+	</nav>					
+<h3 style="margin-left:50%">Contact Form</h3>
+<div style="max-width:50%; margin-left:30%">
+<div class="container">
+  <form>
+    <label for="name">Name</label>
+    <input type="text" id="name" placeholder="Your name..">
+     <br/>
+    <label for="email">Email Id </label>
+    <input type="text" id="email" placeholder="Your email.."> <br/>
+    <textarea id="subject" placeholder="Write something.." style="height:200px"></textarea> <br/>
+   <input  style="background-color:#ff6600" type="submit" value="Submit">
+  </form>
+</div>
+<div class="facebook">
+<i style="font-size:24px" class="fa">&#xf09a;&nbsp https://www.facebook.com/ScholarBoat/</i>
+</div>
+<div class="call">
+<i style="font-size:24px" class="fa">&#xf095;&nbsp 002-1234567822</i>
+</div>
+<div class="mobile">
+<i style="font-size:24px" class="fa">&#xf10b; &nbsp 09123457899</i>
+</div>
+
+</div>
+</body>
+</html>

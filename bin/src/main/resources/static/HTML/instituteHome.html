@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>index</title>
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/pop-up.css">
+<link rel="stylesheet" href="/css/institute-styles.css">
+<script src="/js/institute-jquery.min.js"></script>
+<script src="/bootstrap/js/institute-bootstrap.min.js"></script>
+
+<script>
+	function load(item) {
+		alert(item);
+	}
+
+	
+	$(document).ready(
+					function() {
+						// put Ajax here.
+						//alert("Page Loaded");
+						var data = null;
+						var app_id =null;
+						var obj = {
+							instCode : sessionStorage.getItem("inst_code")
+						}
+						$.ajax({
+							url : '/institute-login', //url we want to hit
+							method : 'POST', //GET or POST or any other method of HTTP
+							data : JSON.stringify(obj),//type of data we are sending
+							contentType : 'application/json',
+
+							success : function(response) {
+								$("#app_ids").empty();
+								//sessionStorage.setItem('data',response);
+
+								data = response;
+								//$("#app_ids").empty().append("<div>"+response.+"</div>");
+
+								$.each(response, function(i, application) {
+									$("#app_ids").append(
+											'<a class="appdata" id='+application.app_id+'>'
+													+ application.app_id + '-'
+													+ application.stuName
+													+ '</a></br>');
+								})
+							}
+
+						})
+						$("#logOut").click(function(){
+							sessionStorage.clear();
+							window.location.href = 'http://localhost:8085/index.html';
+							});
+						
+						$(document).on("click","#attachCertificate",function(){
+							var obj = {
+									id : app_id
+								}
+							
+							$.ajax({
+								url : '/institute-approve', //url we want to hit
+								method : 'POST', //GET or POST or any other method of HTTP
+								data : JSON.stringify(obj),//type of data we are sending
+								contentType : 'application/json',
+								
+								success : function(response){
+									if(response==="approved"){
+										alert("Done Sir!")
+										window.location.href = 'http://localhost:8085/HTML/instituteHome.html'
+									}
+								}
+							})
+						})
+						$(document).on("click","a.appdata",function() {
+											app_id = this.id;
+											var obj = {
+												id : this.id
+											}
+											$.ajax({
+														url : '/institute-applications', //url we want to hit
+														method : 'POST', //GET or POST or any other method of HTTP
+														data : JSON.stringify(obj),//type of data we are sending
+														contentType : 'application/json',
+
+														success : function(response) {
+															//	$("#app_ids").empty();
+															//sessionStorage.setItem('data',response);
+															var html = '<div class="card-group" style="margin-left:45%;"><h4 class="card-title">'
+																	+ response.stuName
+																	+ ' Application</h4></div><table>';
+
+															html += '<div style="margin-left:45%;" class="card" ><table><tr> <h5>Basic Details</h5></tr>';
+															html += "<tr> Gender : </tr><tr>"
+																	+ response.gender
+																	+ "</tr><br/>";
+															html += "<tr> Date of Birth : </tr><tr> "
+																	+ response.dob
+																	+ "</tr><br/>";
+															html += "<tr> Mobile Number : </tr><tr>"
+																	+ response.mobileNo
+																	+ "</tr><br/>";
+															html += "<tr> District : </tr><tr>"
+																	+ response.district
+																	+ "</tr><br/>";
+															html += "<tr> State : </tr><tr>"
+																	+ response.state
+																	+ "</tr><br/>";
+															html += "<tr> Email : </tr><tr>"
+																	+ response.email
+																	+ "</tr><br/>";
+															html += "<tr> Institute Code :</tr><tr>"
+																	+ response.instCode
+																	+ "</tr><br/>";
+															html += "<tr> Aadhar Number : </tr><tr>"
+																	+ response.adharNo
+																	+ "</tr><br/></table></div>";
+
+															html += '<div  class="card" ><table><tr> <h5>Academics Details</h5></tr>';
+															html += "<tr> Present Class : </tr><tr>"
+																	+ response.presentClass
+																	+ "</tr><br/>";
+															html += "<tr> Present Course Year : </tr><tr>"
+																	+ response.presentCourseYear
+																	+ "</tr><br/>";
+															html += "<tr> Mode of Study : </tr><tr>"
+																	+ response.modeOfStudy
+																	+ "</tr><br/>";
+															html += "<tr> Class Start Date : </tr><tr>"
+																	+ response.classStartDate
+																	+ "</tr><br/>";
+															html += "<tr> University : </tr><tr>"
+																	+ response.universityBoardName
+																	+ "</tr><br/>";
+															html += "<tr> Previous Class Course : </tr><tr>"
+																	+ response.previousClassCourse
+																	+ "</tr><br/>";
+															html += "<tr> Previous Passing year : </tr><tr>"
+																	+ response.previousPassingYear
+																	+ "</tr><br/>";
+															html += "<tr> Previous Course Percentage : </tr><tr>"
+																	+ response.previousCoursePercent
+																	+ "</tr><br/></table></div>";
+
+															html += '<div  class="card" ><table><tr> <h5>10th Details</h5></tr>';
+															html += "<tr> 10th Roll Number : </tr><tr>"
+																	+ response.tenthRollNo
+																	+ "</tr><br/>";
+															html += "<tr> 10th Marks : </tr><tr>"
+																	+ response.tenthMarksObtained
+																	+ "</tr><br/>";
+															html += "<tr> 10th Board Name : </tr><tr>"
+																	+ response.tenthBoardName
+																	+ "</tr><br/>";
+															html += "<tr> 10th Passing year : </tr><tr>"
+																	+ response.tenthPassingYear;
+															html += '<a style="margin-left:8%; max-width:20%;" class="button" href="#popup1">View</a>';
+															
+															html += '<div class="card" ><table><tr> <h5>12th Details</h5></tr>';
+															html += "<tr> 12th Roll Number : </tr><tr>"
+																	+ response.twelfthRollNo
+																	+ "</tr><br/>";
+															html += "<tr> 12th Marks : </tr><tr>"
+																	+ response.twelfthMarksObtained
+																	+ "</tr><br/>";
+															html += "<tr> 12th Board Name : </tr><tr>"
+																	+ response.twelfthBoardName
+																	+ "</tr><br/>";
+															html += "<tr> 12th passing year : </tr><tr>"
+																	+ response.twelfthPassingYear
+																	+ "</tr><br/>";
+															
+															html += '<a style="margin-left:8%; max-width:20%;" class="button" href="#popup2">View</a>';			
+															html += "</tr><br/></div></table>";
+															html +='<div id="popup2" class="overlay"><div class="popup2"><a class="close" href="#">&times;</a><div class="content"><p><b>CONDITIONS:</b><br /></p> <img src="'+response.tenthMarkPath+'"/></div></div></div>';
+															html +='<div id="popup1" class="overlay"><div class="popup1"><a class="close" href="#">&times;</a><div class="content"><p><b>CONDITIONS:</b><br/></p><img src="'+response.twelvethMarkPath+'"/></div></div></div>';
+															html +='<div id="popup2" class="overlay"><div class="popup2"><a class="close" href="#">&times;</a><div class="content"><p><b>CONDITIONS:</b><br /></div></div></div>';
+															html +='<div id="popup1" class="overlay"><div class="popup1"><a class="close" href="#">&times;</a><div class="content"><p><b>CONDITIONS:</b></p><br/></div></div></div>';
+															html +='<div><button class="btn" id="attachCertificate">Attach Bonafide</button>';
+															html +='<button class="btn" id="rejectCertificate">Reject</button></div>';
+
+															html += "";
+															$("#studentData")
+																	.html(html);
+														}
+													})
+										})
+					});
+</script>
+<style>
+.btn{
+ background-color: #ffa366;
+ color:black;
+}
+.button {
+	font-size: 1em;
+	padding: 10px;
+	color: black;
+	border: 2px solid #ff6600;
+	border-radius: 20px/50px;
+	text-decoration: none;
+	cursor: pointer;
+	transition: all 0.3s ease-out;
+}
+
+.button:hover {
+	background: #ff6600;
+}
+
+.overlay {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.7);
+	transition: opacity 500ms;
+	visibility: hidden;
+	opacity: 0;
+}
+
+.overlay:target {
+	visibility: visible;
+	opacity: 1;
+}
+
+.popup, .popup1, .popup2 {
+	margin: 70px auto;
+	padding: 20px;
+	background: white;
+	border-radius: 5px;
+	width: 70%;
+	position: relative;
+	transition: all 5s ease-in-out;
+}
+
+.popup h2, .popup1 h2, .popup2 h2 {
+	margin-top: 0;
+	color: #333;
+	font-family: Tahoma, Arial, sans-serif;
+}
+
+.popup .close, .popup1 .close, .popup2 .close {
+	position: absolute;
+	top: 20px;
+	right: 30px;
+	transition: all 200ms;
+	font-size: 30px;
+	font-weight: bold;
+	text-decoration: none;
+	color:#ff6600 ;
+}
+
+.popup .close:hover {
+	color:#ff6600;
+}
+
+.popup .content {
+	max-height: 30%;
+	overflow: auto;
+}
+
+.popup1 .close:hover {
+	color: #ff6600;
+}
+
+.popup1 .content {
+	max-height: 30%;
+	overflow: auto;
+}
+
+.popup2 .close:hover {
+	color: #06D85F;
+}
+
+.popup2 .content {
+	max-height: 30%;
+	overflow: auto;
+}
+</style>
+
+
+</head>
+
+<body>
+	 <div class="card" style="background-color:#ffe0cc">
+	<div>
+		<div class="card-body" style="background-color: #ffb380">
+			<h2 class="text-center card-title" style="font-family:cursive ;"><b>Scholar</b> <img src="/images/giphy.gif" style="height:5%;width:9%"></h2>
+			<h6 class="text-center text-muted card-subtitle mb-2">Government
+				of India</h6>
+		</div>
+	</div>
+	</div>
+	<div>
+		<div class="card-bodyname" style="background-color:#ff4000">
+			<h2 class="text-center card-title">Institute Home Page</h2>
+			 <div id="logOut" style="text-decoration:none;margin-left:90%;color:white"href="#">Log Out</div></div>
+		</div>
+	</div>
+	<div class="card">
+		<div class="card-group">
+			<div class="card" style="max-width: 20%;">
+				<div class="card">
+					<div class="card-body" style="background-color: #fff0e6">
+						<h4 class="card-title">Applications Recieved</h4>
+						<div class="card">
+							<div class="card-body" style="max-width: auto;">
+								<p class="card-text" id="app_ids">Nullam id dolor id nibh
+									ultricies vehicula ut id elit. Cras justo odio, dapibus ac
+									facilisis in, egestas eget quam. Donec id elit non mi porta
+									gravida at eget metus.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			 <div class="card d-inline-block" style="max-width: 80%;">
+				<div class="card-body" id="studentData">
+					<h4 class="card-title" id="studentName"></h4>
+				</div> 
+			</div> 
+		</div>
+	</div>
+
+</body>
+
+</html>

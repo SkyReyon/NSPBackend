@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Institute Registration</title>
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/index-navigation.css">
+<link rel="stylesheet" href="/css/index-styles.css">
+<link rel="stylesheet" href="/css/Registration.css">
+<link rel="stylesheet" href="/css/ScholershipScheme_Institue2.css">
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+	$(function(){
+		$("#formInst").submit(function(evt){
+			evt.preventDefault();
+			var obj={
+					instName: $("#instName").val(),
+					instCode: $("#instCode").val(),
+					diseCode: $("#diseCode").val(),
+				    affName : $("#affName").val(),
+					affState : $("#affState").val(),
+					password : $("#password").val(),
+					instAdd1 : $("#instAdd1").val(),
+					instAdd2 : $("#instAdd2").val(),
+					instCity : $("#instCity").val(),
+					instState : $("#instState").val(),
+					instDistrict : $("#instDistrict").val(),
+					instState : $("#instState").val(),
+					instPincode : $("#instPincode").val(),
+					principalName : $("#principalName").val(),
+					mobileNumber : $("#mobileNumber").val(),
+					
+			}
+			var url="/registerInst";
+			if($("#mobileNumber").val().length != 10){
+				alert("Mobile number has to be 10 characters")
+				$("#mobileNumber").focus();
+			}
+			else if($("#password").val() != $("#cnfPassword").val()){
+				alert("Mismatch of password fields");
+				$("#password").focus();
+			}
+			else if($("#instPincode").val().length != 6){
+				alert("enter correct pin code");
+				$("#instPincode").focus();
+			}
+			else if(!jQuery("#confirmation").prop("checked")){
+				alert("Check the confirmation");		
+			}
+			$.ajax({
+				url : '/registerInst', //url we want to hit
+				method : 'POST', //GET or POST or any other method of HTTP
+				data :JSON.stringify(obj),//type of data we are sending
+				contentType:'application/json',
+				
+				success: function(response){
+				
+					alert(JSON.stringify(response));
+					window.location.href= "http://localhost:8085/HTML/regInstConfirm.html";
+				}
+				
+			})
+			
+		})
+	})
+	</script>
+<style>
+ html, body {
+	width:100%;
+	height:100%;
+}
+ #head{
+background-color:black;
+height:15%;
+margin:0;
+font-size:40px;
+font-style:italic;
+color:#70DBDB;
+font-weight:bold;
+padding-top:1%;
+display:"inline-block";
+  padding: 20px;
+  text-align: right;
+  }
+#p1{
+float:left;}
+
+</style>
+</head>
+<body>
+<div class="card" style="background-color:#ffe0cc">
+	<div>
+		<div class="card-body" style="background-color: #ffb380">
+			<h2 class="text-center card-title" style="font-family:cursive ;"><b>Scholar</b> <img src="/images/giphy.gif" style="height:5%;width:9%"></h2>
+			<h6 class="text-center text-muted card-subtitle mb-2">Government
+				of India</h6>
+		</div>
+	</div>
+	</div>
+	<div id="formInst">
+		<h1 id="title" align="center" >Institute Registration Request Form</h1>
+
+		<form id="formInst">
+			
+			<table align="center" border="1" cellpadding="5" cellspacing="0" bordercolor=" #ffb380">
+							<tr bgcolor="#ffb380">
+
+							<tr bgcolor="#ff6600">
+
+								<td colspan="4" align="left" class="stylemedium">Basic
+									Details</td>
+							</tr>
+							<tr class="stylesmall">
+								<td>Institute Name</td>
+								<td><input type="text" id="instName" maxlength="100" placeholder="Enter your institute name" required></td>
+								<td>Institute Code</td>
+								<td><input type="text" id="instCode" maxlength="100" placeholder="Enter your institution code" required></td>
+							</tr>
+
+
+							<tr class="stylesmall">
+
+								<td>DISE Code</td>
+								<td><input type="text" id="diseCode" maxlength="100" placeholder="Enter institution DISE Code" required></td>
+								<td>Affiliated University/Board Name</td>
+								<td><input type="text" id="affName" maxlength="100" placeholder="university/board name" required></td>
+							</tr>
+
+							<tr class="stylesmall">
+								<td>Affiliated University State</td>
+								<td><select id="affState" required>
+										<option value="">-----select-----</option>
+										<option value="a1">A1</option>
+										<option value="a2">A2</option>
+								</select></td>
+                         </tr>
+
+							<tr class="stylesmall">
+								<td>Set Password</td>
+								<td><input type="text" id="password"
+									maxlength="100" placeholder="Enter password" required></td>
+								<td>Confirm Password</td>
+								<td><input  type="text" id="cnfPassword"
+									maxlength="100" placeholder="retype password" required></td>
+							</tr>
+							<tr bgcolor="#ff6600">
+								<td colspan="4" align="left" class="stylemedium">Proof Of
+									Existence of Institute</td>
+							</tr>
+							<tr class="stylesmall">
+								<td>Institute Establishment/Registration Certificate</td>
+								<td>
+									<div class="upload-btn-wrapper">
+										<input type="file" name="inst_reg" required/>
+									</div>
+								</td>
+								<td>University/Board Affiliation Certificate</td>
+								<td>
+
+									<div class="upload-btn-wrapper">
+										
+
+										<input type="file" name="inst_aff_cert" required />
+									</div>
+								</td>
+							</tr>
+
+
+
+							<tr bgcolor="#ffb380">
+
+							<tr bgcolor="#ff6600">
+
+								<td colspan="4" align="left" class="stylemedium">Address</td>
+							</tr>
+
+							<tr class="stylesmall">
+								<td>Line&nbsp1</td>
+								<td><input type="text" id="instAdd1" maxlength="100" placeholder="Enter address line 1"required></td>
+								<td>Line&nbsp2</td>
+								<td><input type="text" id="instAdd2" maxlength="100" placeholder="Enter address line 2"></td>
+							</tr>
+
+							<tr class="stylesmall">
+								<td>City</td>
+								<td><input type="text" id="instCity" maxlength="100"placeholder="Enter your city" required>
+								</td>
+
+								<td>State</td>
+								<td><select id="instState" required>
+										<option value="">-----select-----</option>
+										<option value="jaipur">Jaipur</option>
+										<option value="mumbai">Mumbai</option>
+								</select></td>
+							<tr class="stylesmall">
+
+								<td>District</td>
+								<td><select id="instDistrict" required>
+										<option value="">-----select-----</option>
+										<option value="d1">D1</option>
+										<option value="d2">D2</option>
+								</select></td>
+								<td>Pin-code</td>
+								<td><input type="text" id="instPincode" maxlength="100" placeholder="Enter pincode"required>
+								</td>
+							</tr>
+
+							<tr bgcolor="#ffb380">
+
+							<tr bgcolor="#ff6600">
+
+								<td colspan="4" align="left" class="stylemedium">Contact
+									Details</td>
+							<tr class="stylesmall">
+								<td>Principal Name</td>
+								<td><input type="text" id="principalName" maxlength="100" placeholder="Enter principal"required>
+								</td>
+								<td>Mobile Number</td>
+								<td><input type="text" id="mobileNumber" maxlength="100"placeholder="Enter mobile number" required>
+								</td>
+							</tr>
+
+							<tr>
+								<td colspan="4"><input class="cursor" type="checkbox"
+									name="confirmation" value="Confirm">All the details and
+									documents submitted by us are valid and true. If found of
+									submitting invalid documents, we may be held responsible for
+									that act by us.</td>
+							</tr>
+							<tr>
+
+								<td colspan="4"><button type="submit" style="background-color:#ff6600;border-radius: 25px; height:40px;width:150px">Register</button></td>
+
+							</tr>
+						</table>
+						</form>
+				</div>
+</body>
+</html>

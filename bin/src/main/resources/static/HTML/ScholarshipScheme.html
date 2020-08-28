@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Scholership Scheme</title>
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/index-navigation.css">
+<link rel="stylesheet" href="/css/index-styles.css">
+<link rel="stylesheet" href="/css/Registration.css">
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+$(function(){
+	$(document).ready(function() {
+		if(!sessionStorage.getItem("reg_id")){
+			alert("Please login to apply for Scholarship!");
+			window.location.href = 'http://localhost:8085'
+		}
+	}); 
+	$("#form1").submit(function(evt){
+		
+		if(!jQuery("#confirmation").prop("checked")){
+			alert("Check the confirmation");
+		}
+		var id = sessionStorage.getItem("reg_id");
+		
+		evt.preventDefault();
+		formdata = new FormData();
+		formdata.append("reg_id",id);
+		formdata.append("religion",$("#religion").val());
+		formdata.append("category",$("#category").val());
+		formdata.append("income",$("#income").val());
+		formdata.append("father",$("#father").val());
+		formdata.append("mother",$("#mother").val());
+		formdata.append("instituteName",$("#instituteName").val());
+		formdata.append("presentClass",$("#presentClass").val());
+		formdata.append("presentCourseYear",$("#presentCourseYear").val());
+		formdata.append("modeOfStudy",$("#modeOfStudy").val());
+		formdata.append("classStartDate",$("#classStartDate").val());
+		formdata.append("universityBoardName",$("#universityBoardName").val());
+		formdata.append("previousClassCourse",$("#previousClassCourse").val());
+		formdata.append("previousPassingYear",$("#previousPassingYear").val());
+		formdata.append("previousCoursePercent",$("#previousCoursePercent").val());
+		formdata.append("tenthRollNo",$("#tenthRollNo").val());
+		formdata.append("tenthBoardName",$("#tenthBoardName").val());
+		formdata.append("tenthPassingYear",$("#tenthPassingYear").val());
+		formdata.append("tenthMarksObtained",$("#tenthMarksObtained").val());
+		formdata.append("twelfthRollNo",$("#twelfthRollNo").val());
+		formdata.append("twelfthBoardName",$("#twelfthBoardName").val());
+		formdata.append("twelfthPassingYear",$("#twelfthPassingYear").val());
+		formdata.append("twelfthMarksObtained",$("#twelfthMarksObtained").val());
+		formdata.append("admissionFee",$("#admissionFee").val());
+		formdata.append("tuitionFee",$("#tuitionFee").val());
+		formdata.append("otherFee",$("#otherFee").val());
+		formdata.append("parentProfession",$("#parentsProfession").val());
+		formdata.append("scholarState",$("#scholarState").val());
+		formdata.append("scholarDistrict",$("#scholarDistrict").val());
+		formdata.append("scholarBlock",$("#scholarBlock").val());
+		formdata.append("houseNo",$("#houseNo").val());
+		formdata.append("streetNo",$("#streetNo").val());
+		formdata.append("pincode",$("#pincode").val());
+		formdata.append("scheme",$("#scheme").val());
+		
+		formdata.append("domicileCertificate", $("#domicileCertificate").get(0).files[0]);
+		formdata.append("stuPhoto", $("#stuPhoto").get(0).files[0]);
+		formdata.append("instIdCard", $("#instIdCard").get(0).files[0]);
+		formdata.append("incomeCertificate", $("#incomeCertificate").get(0).files[0]);
+		formdata.append("prevMarksheet", $("#prevMarksheet").get(0).files[0]);
+		formdata.append("currReciept", $("#currReciept").get(0).files[0]);
+		formdata.append("bankPassbook", $("#bankPassbook").get(0).files[0]);
+		formdata.append("aadharCard", $("#aadharCard").get(0).files[0]);
+		formdata.append("tenthMarksheet", $("#tenthMarksheet").get(0).files[0]);
+		formdata.append("twelvethMarksheet", $("#twelvethMarksheet").get(0).files[0]);
+		
+		
+		
+		$.ajax({
+			url : '/application', //url we want to hit
+			method : 'POST', //GET or POST or any other method of HTTP
+			data : formdata,//type of data we are sending
+			processData: false, //no data to send
+			contentType : false,
+			success: function(response){
+				alert(JSON.stringify(response));	
+				window.location.href = 'http://localhost:8085/HTML/stuHome.html'
+			}
+			
+		})
+		
+	})
+})
+
+
+</script>
+</head>
+<body>
+<div class="card" style="background-color:#ffe0cc">
+	<div>
+		<div class="card-body" style="background-color: #ffb380">
+			<h2 class="text-center card-title" style="font-family:cursive ;"><b>Scholar</b> <img src="/images/giphy.gif" style="height:5%;width:9%"></h2>
+			<h6 class="text-center text-muted card-subtitle mb-2">Government
+				of India</h6>
+		</div>
+	</div>
+	</div>
+	<div style="margin : 10px;">
+		<h3 id="title" >Scholarship Application Form</h3>
+		<form id="form1">
+			<table border="1" cellpadding="5" cellspacing="0" bordercolor="#ff6600">
+							<tr bgcolor="#ff6600">
+								<td colspan="4" align="left" class="stylemedium">Basic
+									Details</td>
+							</tr>
+							<tr class="stylesmall">
+
+								<td>Religion</td>
+								<td><select  id="religion" required>
+										<option value="">-----select-----</option>
+										<option value="Hindu">Hindu</option>
+										<option value="Muslim">Muslim</option>
+										<option value="Christian">Christian</option>
+										<option value="Sikh">Sikh</option>
+								</select></td>
+								<td>Community/Category</td>
+								<td><input name="category" type="text" id="category"
+									maxlength="20" placeholder="community"></td>
+							</tr>
+							<tr class="stylesmall">
+							<td>Parents Profession</td>
+								<td><input name="parents_profession" id="parentsProfession" placeholder="your parents proffesion"required>
+								</td>
+							
+								<td>Family Annual Income</td>
+								<td><input name="income" type="number" id="income" placeholder="family annual income" required></td>
+							</tr>
+							<tr class="stylesmall">
+								<td>Father Name</td>
+								<td><input name="father" type="text" id="father"placeholder="your father's name" required></td>								<td>Mother Name</td>
+								<td><input name="mother" type="text" id="mother" placeholder="your mother's name" required></td>
+									
+							</tr>
+
+							<tr bgcolor="#ff6600">
+								<td colspan="4" align="left" class="stylemedium">Academic
+									Details</td>
+							</tr>
+							<tr class="stylesmall">
+								<td>Institute Name</td>
+								<td><input type="text" id="instituteName" required>
+						
+								</input></td>
+								<td>Present Class/Course</td>
+								<td><input name="present_class" type="text"
+									id="presentClass" placeholder="" required></td>
+							</tr>
+							<tr class="stylesmall">
+								<td>Present Class/Course Year</td>
+								<td><input name="present_course_year" type="text"
+									id="presentCourseYear" required></td>
+								<td>Mode Of Study</td>
+								<td><select name="mode_of_study" type="text"
+									id="modeOfStudy" required>
+										<option value="">-----select-----</option>
+										<option value="regular">Regular</option>
+										<option value="distance_course">Distance Course</option>
+								</select></td>
+							</tr>
+							<tr class="stylesmall">
+								<td>Class Start Date</td>
+								<td><input name="class_start_date" type="text"
+									id="classStartDate" required></td>
+								<td>University/Board Name</td>
+								<td><input name="university_board_name" type="text"
+									id="universityBoardName" maxlength="10" required></td>
+							</tr>
+							<tr class="stylesmall">
+								<td>Previous Class/Course</td>
+								<td><input name="previous_class_course" type="text"
+									id="previousClassCourse" required></td>
+								<td>Previous Passing Year</td>
+								<td><input name="previous_passing_year" type="text"
+									id="previousPassingYear" maxlength="10" required></td>
+							</tr>
+							<tr>
+								<td class="stylesmall">Previous Class/Course %</td>
+								<td><input name="previous_course_%" type="number"
+									id="previousCoursePercent" maxlength="80" required></td>
+							</tr>
+
+							<tr bgcolor="#ff6600">
+								<td colspan="4" align="left" class="stylemedium">10th Class</td>
+							</tr>
+							<tr class="stylesmall">
+								<td>Roll Number</td>
+								<td><input name="10_roll_no" id="tenthRollNo" type="number" required></td>
+								<td>Board Name</td>
+								<td><input name="10_board_name" id="tenthBoardName" type="text"required>
+								</td>
+							</tr>
+							<tr class="stylesmall">
+								<td>Passing Year</td>
+								<td><input name="10_passing_year" id="tenthPassingYear"type="text" required>
+								</td>
+								<td>% Obtained</td>
+								<td><input name="10_%_obtained" id="tenthMarksObtained"type="number" required>
+								</td>
+							</tr>
+
+							<tr bgcolor="#ff6600">
+								<td colspan="4" align="left" class="stylemedium" required>12th Class</td>
+							</tr>
+							<tr class="stylesmall">
+								<td>Roll Number</td>
+								<td><input name="12_roll_no" id="twelfthRollNo" type="number"required></td>
+								<td>Board Name</td>
+								<td><input name="12_board_name" id="twelfthBoardName" type="text"required>
+								</td>
+							</tr>
+							<tr class="stylesmall">
+								<td>Passing Year</td>
+								<td><input name="12_passing_year" id="twelfthPassingYear" type="text"required>
+								</td>
+								<td>% Obtained</td>
+								<td><input name="12_%_obtained" id="twelfthMarksObtained"type="number" required>
+								</td>
+							</tr>
+
+
+							<tr bgcolor="#ff6600">
+								<td colspan="4" align="left" class="stylemedium">Fee
+									Details</td>
+							</tr>
+							<tr class="stylesmall">
+								<td>Admission Fee</td>
+								<td><input name="admission_fee" id="admissionFee" type="number"required>
+								</td>
+								<td>Tuition Fee</td>
+								<td><input name="tuition_fee" id="tuitionFee" type="number" required></td>
+							</tr>
+							<tr class="stylesmall">
+								<td>Other Fee</td>
+								<td><input name="other_fee" id="otherFee" type="number"></td>
+							</tr>
+
+							
+							<tr bgcolor="#ff6600">
+								<td colspan="4" align="left" class="stylemedium">Contact
+									Details</td>
+							</tr>
+							<tr class="stylesmall">
+								<td>State</td>
+								<td><select name="scholer_state" type="text"
+									id="scholarState" required>
+										<option value="">-----select-----</option>
+										<option value="mp">M.P.</option>
+										<option value="mumbai">Mumbai</option>
+								</select></td>
+								<td>District</td>
+								<td><select name="scholer_district" type="text"
+									id="scholarDistrict" required>
+										<option value="">-----select-----</option>
+										<option value="jabalpur">Jabalpur</option>
+										<option value="thane">Thane</option>
+								</select></td>
+							</tr>
+							<tr class="stylesmall">
+								<td>Block</td>
+								<td><select name="scholer_district" type="text"
+									id="scholarBlock" required>
+										<option value="">-----select-----</option>
+										<option value="b1">B1</option>
+										<option value="b2">B2</option>
+								</select></td>
+								<td>House Number</td>
+								<td><input name="house_no" id="houseNo" type="number"required></td>
+							</tr>
+							<tr class="stylesmall">
+								<td>Street Number</td>
+								<td><input name="street_no" id="streetNo" type="number"required></td>
+								<td>Pin Code</td>
+								<td><input name="pin_code" id="pincode" required></td>
+							</tr>
+							<tr class="stylesmall">
+								<td>Choose Scheme Applying For</td>
+								<td><select name="scheme" type="text" id="scheme" required>
+										<option value="">-----select-----</option>
+										<option value="s1">S1</option>
+										<option value="s2">S2</option>
+								</select></td>
+							<tr bgcolor="#ff6600">
+								<td colspan="4" align="left" class="stylemedium">Documents
+									Upload Section</td>
+							</tr>
+							<tr class="stylesmall">
+								<td>Domicile Certificate</td>
+								<td>
+										<input type="file" id="domicileCertificate" required/>
+									
+								</td>
+								<td>Student Photograph</td>
+								<td><input type="file" id="stuPhoto"required/>
+								</td>
+							</tr>
+							<tr class="stylesmall">
+								<td>Institute ID Card</td>
+								<td>
+										<input type="file" id="instIdCard"required/>
+								</td>
+								<td>Caste/Income Certificate</td>
+								<td>
+										<input type="file" id="incomeCertificate" required/>
+								</td>
+							</tr>
+							<tr class="stylesmall">
+								<td>Previous Year Marksheet</td>
+								<td>
+									
+										<input type="file" id="prevMarksheet"required/>
+									
+								</td>
+								<td>Fee Receipt of Current Year</td>
+								<td>
+										<input type="file" id="currReciept" required/>
+									
+								</td>
+							</tr>
+							<tr class="stylesmall">
+								<td>Bank Passbook(Front Page)</td>
+								<td>
+									
+										<input type="file" id="bankPassbook" required/>
+									
+								</td>
+								<td>Aadhar Card</td>
+								<td>
+									
+										<input type="file" id="aadharCard" required/>
+									
+								</td>
+							</tr>
+							<tr class="stylesmall">
+								<td>10th Class Marksheet</td>
+								<td>
+										<input type="file" id="tenthMarksheet" required/>
+									
+								</td>
+								<td>12th Class Marksheet</td>
+								<td>
+										<input type="file" id="twelvethMarksheet" required/>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="4"><input class="cursor" type="checkbox"
+									id="confirmation" value="Confirm">All the details
+									furnished by me are true to the best of my knowledge. If any
+									mistakes are found then I may be disqualified for scholership
+									scheme announced by government of India Or my state governmnet.
+
+								</td>
+							</tr>
+							<tr>
+								<td colspan="4"><input name="register" type="submit"
+									style="background-color: #ff6600;border-radius: 25px; height:10%; font-weight:bold;"id="register" value="Register"></td>
+							</tr>
+
+						</table>
+					</form>
+				</div>
+</body>
+</html>

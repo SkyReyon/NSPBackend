@@ -1,0 +1,99 @@
+@charset "ISO-8859-1";
+#head{
+background-color:#DC143C;
+height:30%;
+margin:0;
+font-size:40px;
+font-style:italic;
+font-color: black;
+font-weight:bold;
+}
+body {
+margin-left: 0px;
+margin-top:0px;
+margin-right: 0px;
+margin-bottom: 0px;
+}
+#form{
+margin-left:5%;
+margin-top:3%;
+margin-bottom:2%;
+}
+
+
+.stylemedium {
+font-size: 24px;
+font-family: "Times New Roman", Times, serif;
+font-weight: bold;
+}
+
+.stylesmall {
+font-family: "Times New Roman", Times, serif;
+font-size: 16px;
+font-weight: bold;
+}
+
+.stylegreen {font-family: "Times New Roman", Times, serif; font-size: 12px;
+font-weight: bold; color: #007F00; }
+
+.stylered {
+font-size: 12px;
+font-family: "Times New Roman", Times, serif;
+color: #FF0000;
+font-weight: bold;
+}
+
+.stylegrey {font-family: "Times New Roman", Times, serif; font-size: 12px;
+font-weight: bold; color: #550055; }
+
+
+.stylegreyre {font-family: "Times New Roman", Times, serif; font-size: 12px;
+font-weight: bold; color: #CCC; }
+
+.stylelink {font-family: "Times New Roman";
+             color: #AA0000;
+             
+			 }
+			
+.st{font-family: "Times New Roman";
+             color:  #AA0000 ;
+            
+			}	
+
+.stylelink2
+ {
+ font-family: "Times New Roman", Times, serif; font-size: 12px;
+font-weight: bold; color: #999;
+ }
+ .upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.btn {
+  border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 3px 20px;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: bold;
+  
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 12px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  
+  
+  
+}
+.cursor{
+	cursor:pointer;
+}
+	
+

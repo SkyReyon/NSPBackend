@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Login Form Design</title>
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/index-navigation.css">
+<link rel="stylesheet" href="/css/index-styles.css">
+<script src= "https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+	$(function() {
+		$("#form").submit(function(evt) {
+				evt.preventDefault();
+				var obj = {
+				userName : $("#username").val(),
+				password : $("#password").val(),
+				}
+			
+			$.ajax({
+				url : '/nodal-authenticate', //url we want to hit
+				method : 'POST', //GET or POST or any other method of HTTP
+				data : JSON.stringify(obj),//type of data we are sending
+				contentType : 'application/json',
+
+				success : function(response) {
+					if(!response){
+						alert("Invalid username/password");
+					}
+					else{
+						sessionStorage.setItem("nodal_username",response);
+						window.location.href = "http://localhost:8085/HTML/nodalHome.html";	
+					}
+				}
+				})
+		})
+	})
+	
+</script>
+
+<style>
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+	background: url("/images/b2.jpg");
+	/*     background-opacity:0.5; */
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.box {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	/* opacity:0.5; */
+	width: 400px;
+	padding: 40px;
+	background: rgb(255, 121, 77);
+	box-sizing: border-box;
+	box-shadow: 0 15px 25px rgba(0, 0, 0, .5);
+	border-radius: 10px;
+}
+
+.box h2 {
+	margin: 0 0 30px;
+	padding: 0;
+	color: #FFF;
+	text-align: center;
+}
+
+.box .inputBox {
+	position: relative;
+}
+
+.box .inputBox input {
+	width: 100%;
+	padding: 10px 0;
+	font-size: 16px;
+	color: #FFF;
+	letter-spacing: 1px;
+	margin-bottom: 30px;
+	border: none;
+	border-bottom: 1px solid #FFF;
+	outline: none;
+	background: transparent;
+}
+
+.box .inputBox label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 10px 0;
+	font-size: 16px;
+	color: black;
+	pointer-events: none;
+	transition: .5s;
+	animation: LabelOnLoad 1s forwards 0s ease;
+}
+
+@
+keyframes LabelOnLoad { 0%{
+	transform: rotate(0) translateY(-19px);
+	opacity: 0;
+}
+
+100%{
+transform
+:
+ 
+rotate
+(0)
+ 
+translateY
+(0);
+
+        
+opacity
+:
+ 
+1;
+}
+}
+.box .inputBox input:focus ~ label, .box .inputBox input:valid ~ label {
+	top: -19px;
+	left: 0;
+	color: ff4000;
+	font-size: 12px;
+}
+
+.box input[type='submit'] {
+	
+	border: none;
+	outline: none;
+	color: #FFF;
+	background: #03A9F4;
+	padding: 10px 20px;
+	cursor: pointer;
+	border-radius: 5px;
+	font-size: 14px;
+}
+
+.box input[type='submit']:hover {
+	background-color:  #ff8c66;
+}
+
+@media ( max-width : 720px) {
+	.box {
+		width: 80%;
+	}
+}
+</style>
+
+</head>
+<body style="background-color: #ffe0cc">
+<div class="card" style="background-color:#ffe0cc">
+	<div>
+		<div class="card-body" style="background-color: #ffb380">
+			<h2 class="text-center card-title" style="font-family:cursive ;"><b>Scholar</b> <img src="/images/giphy.gif" style="height:5%;width:9%"></h2>
+			<h6 class="text-center text-muted card-subtitle mb-2">Government
+				of India</h6>
+		</div>
+	</div>
+	</div>
+
+	<div class="box" style="margin-top:2%">
+		<h2 style="color:black">Nodal Login</h2>
+		<form id="form">
+			<div class="inputBox">
+				<input type="text" id="username" required> <label for="">Username</label>
+			</div>
+			<div class="inputBox">
+				<input type="password" id="password" required> <label for="">Password</label>
+			</div>
+			<input style="background-color:#ff4000" type="submit" value="Submit" >
+		</form>
+	</div>
+</body>
+</html>
